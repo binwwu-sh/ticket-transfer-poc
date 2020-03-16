@@ -35,5 +35,11 @@ namespace TicketTransferApi.Controllers
             })
             .ToArray();
         }
+
+        [HttpGet("cities")]
+        public async Task<List<string>> GetCities()
+        {
+            return await Task.FromResult(new List<string> { "shanghai", "beijing" });
+        }
     }
 }
