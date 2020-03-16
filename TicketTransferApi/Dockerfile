@@ -6,11 +6,10 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
-WORKDIR /src
-COPY ["TicketTransferApi/TicketTransferApi.csproj", "TicketTransferApi/"]
-RUN dotnet restore "TicketTransferApi/TicketTransferApi.csproj"
-COPY . .
-WORKDIR "/src/TicketTransferApi"
+WORKDIR .
+COPY . TicketTransferApi
+WORKDIR "TicketTransferApi"
+RUN dotnet restore "TicketTransferApi.csproj"
 RUN dotnet build "TicketTransferApi.csproj" -c Release -o /app/build
 
 FROM build AS publish
